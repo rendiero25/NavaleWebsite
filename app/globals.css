@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy-950: #040C14;
+    --navy-900: #0B1824;
+    --navy-800: #0F2236;
+    --blue-brand: #1A56A0;
+    --blue-light: #2E86C1;
+    --white: #FFFFFF;
+    --gray-100: #EEF2F7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body text-neutral-900 bg-white;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #1A56A0;
+    color: white;
+  }
+}
+
+@layer components {
+  /* Swiss grid rule lines */
+  .rule-line {
+    @apply border-t border-neutral-200;
+  }
+
+  .rule-line-dark {
+    @apply border-t border-white/10;
+  }
+
+  /* Swiss label style */
+  .label-tag {
+    @apply font-mono text-xs uppercase tracking-widest text-blue-brand;
+  }
+
+  .label-tag-light {
+    @apply font-mono text-xs uppercase tracking-widest text-blue-pale;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-blue-brand text-white font-display font-semibold text-sm tracking-wide uppercase
+    hover:bg-blue-light transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white font-display font-semibold text-sm tracking-wide uppercase
+    hover:bg-white/10 hover:border-white/60 transition-all duration-300;
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center gap-2 px-8 py-4 border border-navy-900 text-navy-900 font-display font-semibold text-sm tracking-wide uppercase
+    hover:bg-navy-900 hover:text-white transition-all duration-300;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-display font-semibold text-sm tracking-wide uppercase
+    hover:bg-[#20BA5A] transition-all duration-300;
+  }
+
+  /* Card */
+  .service-card {
+    @apply p-8 border border-neutral-200 hover:border-blue-brand/40 hover:bg-neutral-50 
+    transition-all duration-500 cursor-default;
+  }
+
+  /* Section padding */
+  .section-pad {
+    @apply py-24 lg:py-32;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 lg:px-10;
+  }
+}
+
+@layer utilities {
+  /* Swiss number label */
+  .counter-label {
+    @apply font-mono text-xs text-neutral-500 tabular-nums;
+  }
+
+  /* Clip for before/after */
+  .before-after-clip {
+    clip-path: inset(0 50% 0 0);
+    transition: clip-path 0s;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #7AB8E0 0%, #ffffff 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Smooth hover underline */
+  .hover-underline {
+    position: relative;
+  }
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  .hover-underline:hover::after {
+    width: 100%;
+  }
+}
+
+/* GSAP initial states */
+.gsap-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #040C14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A56A0;
+  border-radius: 3px;
+}
+
+/* Before/After Slider */
+.ba-slider {
+  touch-action: none;
+  user-select: none;
+}

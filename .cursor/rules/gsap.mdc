@@ -1,0 +1,85 @@
+---
+description: GSAP animation patterns and rules
+globs: ["**/*.tsx", "**/*.ts"]
+alwaysApply: false
+---
+
+# GSAP Animation Rules
+
+## Setup Requirements
+Every file using GSAP must:
+1. Have `'use client'` at the top
+2. Import gsap and plugins explicitly
+3. Register plugins before use
+
+```tsx
+'use client'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+```
+
+## Always Use gsap.context() for Cleanup
+```tsx
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    // all GSAP code here
+  }, containerRef) // scope to a ref
+
+  return () => ctx.revert() // cleanup — always required
+}, [])
+```
+
+## Prefer Reusable Components
+Before writing raw GSAP, check if these components handle the need:
+- `<ScrollReveal>` — fade + slide on scroll (up/left/right)
+- `<StaggerReveal>` — staggered children reveal on scroll  
+- `<AnimatedCounter>` — number count-up on scroll
+
+## Standard Easing
+```
+power3.out    → standard entrances (most common)
+power2.out    → subtle / secondary elements
+back.out(1.7) → playful emphasis (use sparingly)
+sine.inOut    → infinite loops / oscillation
+```
+
+## Standard Durations
+```
+0.5s  → micro interactions (hover effects)
+0.7s  → standard reveals
+0.9s  → hero / prominent animations
+1.2s+ → very slow / atmospheric (use rarely)
+```
+
+## Timeline Pattern for Hero Sections
+```tsx
+const tl = gsap.timeline({ delay: 0.5 })
+tl.fromTo(tagEl,   { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' })
+  .fromTo(titleEl, { opacity: 0, y: 80  }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
+  .fromTo(subEl,   { opacity: 0, y: 20  }, { opacity: 1, y: 0, duration: 0.7               }, '-=0.4')
+  .fromTo(ctaEl,   { opacity: 0, y: 20  }, { opacity: 1, y: 0, duration: 0.7               }, '-=0.4')
+```
+
+## ScrollTrigger Defaults
+```tsx
+scrollTrigger: {
+  trigger: el,
+  start: 'top 88%',   // trigger when top of element reaches 88% of viewport
+  toggleActions: 'play none none none',  // play once (forward only)
+}
+```
+
+## Initial State — Inline Style
+When an element needs to start hidden (opacity: 0) before GSAP runs:
+```tsx
+// Use inline style, NOT Tailwind opacity-0 (Tailwind might override GSAP)
+<div ref={ref} style={{ opacity: 0 }}>
+```
+
+## NEVER
+- ❌ Call GSAP outside of useEffect or event handlers
+- ❌ Forget `ctx.revert()` — causes ScrollTrigger leaks
+- ❌ Use `document.querySelector` — always use refs
+- ❌ Register the same plugin multiple times in the same file

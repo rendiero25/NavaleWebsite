@@ -1,0 +1,50 @@
+---
+description: General rules for CV Navale Mitratama website project
+globs: ["**/*.tsx", "**/*.ts", "**/*.css"]
+alwaysApply: true
+---
+
+# CV Navale Mitratama — General Rules
+
+## Project Identity
+This is a **company profile website** for CV Navale Mitratama, a maritime maintenance company in Indonesia. The site is in **Bahasa Indonesia**. All UI copy, labels, and placeholder text must be in Indonesian.
+
+## Tech Stack (do not deviate)
+- Next.js 15 App Router
+- Tailwind CSS v3 (no CSS Modules, no styled-components)
+- GSAP 3.12 + ScrollTrigger for all animations
+- Resend for transactional email
+- React Hook Form for all forms
+- TypeScript strict mode
+
+## Design System — Non-Negotiable
+Use the established design tokens. Never introduce new colors outside of:
+- `navy-950, navy-900, navy-800` for dark backgrounds
+- `blue-brand (#1A56A0)` as primary accent
+- `blue-pale (#7AB8E0)` for light accents on dark bg
+- `neutral-50/100/200/500/700/900` for grays
+
+Use the font variables ONLY:
+- `font-display` → Syne (headings, nav, CTAs)
+- `font-body` → Source Sans 3 (paragraphs)
+- `font-mono` → DM Mono (tags, labels, counters, numbers)
+
+## Reuse Custom Classes
+Always prefer globals.css utility classes before writing new Tailwind:
+- `.container-custom` instead of `max-w-7xl mx-auto px-6 lg:px-10`
+- `.section-pad` instead of `py-24 lg:py-32`
+- `.label-tag` / `.label-tag-light` for section labels
+- `.btn-primary`, `.btn-outline`, `.btn-outline-dark`, `.btn-whatsapp`
+- `.service-card` for service grid items
+
+## Component Rules
+- Default to **Server Components**
+- Add `'use client'` ONLY when using: hooks, GSAP, event listeners, browser APIs
+- Use named exports for all components
+- Use default exports only for Next.js page files
+
+## Naming
+- Components: `PascalCase.tsx`
+- Pages: `app/route-name/page.tsx` (kebab-case directory)
+- Utilities: `camelCase.ts`
+- Aliases: always use `@/` not relative `../../`

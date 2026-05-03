@@ -1,0 +1,160 @@
+---
+description: Component patterns, page structure, and UI conventions
+globs: ["app/**/*.tsx", "components/**/*.tsx"]
+alwaysApply: false
+---
+
+# Component & Page Rules
+
+## Page Structure Pattern
+Every page must follow this skeleton:
+```tsx
+import type { Metadata } from 'next'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
+import { ScrollReveal } from '@/components/ScrollReveal'
+
+export const metadata: Metadata = {
+  title: 'Page Title',
+  description: '...',
+}
+
+export default function PageName() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        {/* Page Header — dark navy bg */}
+        <section className="bg-navy-950 pt-36 pb-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
+          <div className="container-custom relative z-10">
+            <ScrollReveal>
+              <div className="label-tag-light mb-4">Section Label</div>
+              <h1 className="font-display font-extrabold text-display text-white mb-6">
+                Page Headline
+              </h1>
+              <p className="font-body text-white/60 text-lg max-w-2xl leading-relaxed">
+                Subheadline text.
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Content sections */}
+      </main>
+      <Footer />
+    </>
+  )
+}
+```
+
+## Section Alternation Pattern
+Alternate section backgrounds for visual rhythm:
+```
+Section 1: bg-white
+Section 2: bg-neutral-50
+Section 3: bg-navy-900 (dark accent)
+Section 4: bg-blue-brand (primary CTA)
+```
+
+## Section Internal Structure
+```tsx
+<section className="section-pad bg-white">
+  <div className="container-custom">
+    {/* Label + Heading */}
+    <ScrollReveal className="mb-16">
+      <div className="label-tag mb-3">Section Label</div>
+      <h2 className="font-display font-bold text-display text-navy-900">
+        Heading
+      </h2>
+    </ScrollReveal>
+
+    {/* Content */}
+    <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {items.map(item => <Card key={item.id} {...item} />)}
+    </StaggerReveal>
+  </div>
+</section>
+```
+
+## Typography Hierarchy (inside page body)
+```tsx
+// Section label
+<div className="label-tag mb-3">Kata Kunci Singkat</div>
+
+// Main heading
+<h2 className="font-display font-bold text-display text-navy-900">
+  Judul Section
+</h2>
+
+// Sub heading
+<h3 className="font-display font-semibold text-headline text-navy-900">
+  Sub Judul
+</h3>
+
+// Body text
+<p className="font-body text-neutral-500 leading-relaxed">
+  Paragraf konten.
+</p>
+
+// Mono label / metadata
+<span className="font-mono text-[11px] text-neutral-400 uppercase tracking-widest">
+  Tahun / Kategori / Status
+</span>
+```
+
+## Cards
+```tsx
+// Standard service card (light bg)
+<div className="service-card">
+  <div className="text-3xl mb-4">{icon}</div>
+  <h3 className="font-display font-bold text-navy-900 text-lg mb-2">{title}</h3>
+  <p className="font-body text-neutral-500 text-sm leading-relaxed">{desc}</p>
+  <div className="mt-6 w-8 h-0.5 bg-blue-brand group-hover:w-16 transition-all duration-300" />
+</div>
+
+// Dark card (navy bg)
+<div className="bg-navy-900 p-8 relative">
+  <div className="absolute top-0 left-0 right-0 h-0.5 bg-blue-brand" />
+  {/* content */}
+</div>
+```
+
+## CTA Sections (end of page)
+Always end pages with a CTA section:
+```tsx
+<section className="section-pad bg-blue-brand relative overflow-hidden">
+  <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
+  <div className="container-custom relative z-10 text-center">
+    <ScrollReveal>
+      <div className="label-tag-light mb-4">Action Label</div>
+      <h2 className="font-display font-extrabold text-display text-white mb-6">
+        CTA Heading
+      </h2>
+      <p className="font-body text-white/70 text-lg mb-10 max-w-xl mx-auto">
+        Supporting text.
+      </p>
+      <div className="flex flex-wrap justify-center gap-4">
+        <a href="https://wa.me/6281219445330" className="btn-whatsapp">WhatsApp</a>
+        <Link href="/kontak" className="btn-outline">Form Kontak</Link>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>
+```
+
+## WhatsApp Links
+Always use this format with pre-filled message:
+```tsx
+<a
+  href="https://wa.me/6281219445330?text=ENCODED_MESSAGE"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+```
+
+## Image Handling
+- Use `next/image` for all images in `/public`
+- Always provide `alt` text in Indonesian
+- Use `fill` + `object-cover` for card/section images
+- Use explicit `width` and `height` for inline images

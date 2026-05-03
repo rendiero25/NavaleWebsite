@@ -1,0 +1,81 @@
+---
+description: Gallery page, before/after slider, and media handling rules
+globs: ["app/galeri/**/*.tsx", "components/BeforeAfterSlider.tsx"]
+alwaysApply: false
+---
+
+# Gallery & Media Rules
+
+## Gallery Item Schema
+Every item in `galleryItems` must match this shape:
+```ts
+type GalleryItem = {
+  id: string                                    // unique, sequential: '1', '2', ...
+  title: string                                 // judul pekerjaan dalam Bahasa Indonesia
+  category: GalleryCategory                     // must match `categories` array
+  type: 'before-after' | 'photo' | 'video'
+  before?: string        // '/gallery/before/filename.jpg' (required if type=before-after)
+  after?: string         // '/gallery/after/filename.jpg'  (required if type=before-after)
+  photo?: string         // '/gallery/filename.jpg'         (required if type=photo)
+  youtubeId?: string     // video ID only, NOT full URL     (for type=video YouTube)
+  videoSrc?: string      // '/gallery/videos/filename.mp4'  (for type=video local)
+  description?: string   // deskripsi singkat opsional
+}
+```
+
+## Valid Categories
+```ts
+type GalleryCategory =
+  | 'Turbocharger'
+  | 'Mesin'
+  | 'Pompa'
+  | 'Governor'
+  | 'Kelistrikan'
+  | 'Lainnya'
+```
+If adding a new category, also add it to the `categories` array in `app/galeri/page.tsx`.
+
+## File Naming Convention
+```
+/public/gallery/before/[service]-[number].jpg    e.g. turbo-01.jpg
+/public/gallery/after/[service]-[number].jpg     e.g. turbo-01.jpg
+/public/gallery/[service]-[number].jpg           e.g. pompa-01.jpg
+/public/gallery/videos/[service]-[number].mp4    e.g. governor-01.mp4
+```
+
+## Image Requirements
+- Format: JPG or WebP (prefer WebP for performance)
+- Aspect ratio: 16:9 (landscape) for consistency in grid
+- Max file size: 500KB per image (optimize before upload)
+- Min resolution: 1200×675px
+
+## Video Requirements
+- YouTube: public or unlisted videos only
+- Local .mp4: max 10MB, H.264 encoding, 720p recommended
+- Always provide `title` attribute for accessibility
+
+## BeforeAfterSlider Usage
+```tsx
+<BeforeAfterSlider
+  before="/gallery/before/turbo-01.jpg"
+  after="/gallery/after/turbo-01.jpg"
+  beforeLabel="Sebelum"   // default
+  afterLabel="Sesudah"    // default
+  title="Judul opsional"
+  alt="Deskripsi alt text"
+/>
+```
+
+## Adding New Category (full steps)
+1. Add string to `categories` array in `app/galeri/page.tsx`
+2. Add `GalleryCategory` type union in the type definition
+3. Add items with that category in `galleryItems`
+
+## Lightbox
+Photo items (`type: 'photo'`) support lightbox zoom on click.
+Before/after and video items do NOT use lightbox (they have their own interaction).
+
+## Performance
+- Images are loaded with `next/image` (`fill` + `object-cover`)
+- Lazy loading is automatic via Next.js
+- Do NOT add `priority` prop to gallery images (they are below the fold)

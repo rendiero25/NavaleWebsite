@@ -1,0 +1,105 @@
+---
+description: API routes, form handling, and email integration rules
+globs: ["app/api/**/*.ts", "app/kontak/**/*.tsx"]
+alwaysApply: false
+---
+
+# API & Form Rules
+
+## API Route Structure
+All API routes must follow:
+```ts
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json()
+    
+    // 1. Validate input
+    if (!body.required_field) {
+      return NextResponse.json({ error: 'Deskripsi error' }, { status: 400 })
+    }
+    
+    // 2. Business logic
+    
+    // 3. Return success
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('API error:', error)
+    return NextResponse.json({ error: 'Gagal memproses permintaan' }, { status: 500 })
+  }
+}
+```
+
+## Contact Form — Required Fields
+```ts
+{
+  name: string      // min 2 char
+  company?: string  // optional
+  email: string     // valid email format
+  phone: string     // Indonesian format
+  service: string   // from predefined list
+  message: string   // min 20 char
+}
+```
+
+## Resend Email Pattern
+```ts
+import { Resend } from 'resend'
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+// Notification email to Navale
+await resend.emails.send({
+  from: 'Website Navale <noreply@domain.com>',
+  to: ['cv.navalemitratama@gmail.com'],
+  replyTo: senderEmail,
+  subject: `[Website] Subjek Email`,
+  html: `HTML_TEMPLATE`,
+})
+
+// Auto-reply to sender
+await resend.emails.send({
+  from: 'CV Navale Mitratama <noreply@domain.com>',
+  to: [senderEmail],
+  subject: 'Konfirmasi — CV Navale Mitratama',
+  html: `AUTO_REPLY_TEMPLATE`,
+})
+```
+
+## Email Template Style
+HTML email templates must use:
+- Background: `#0B1824` (navy-900) for header
+- Accent: `#1A56A0` (blue-brand)
+- WhatsApp link: `#25D366`
+- Inline styles only (email clients strip `<style>` tags)
+- No external fonts in emails
+
+## React Hook Form Pattern
+```tsx
+'use client'
+import { useForm } from 'react-hook-form'
+
+type FormData = { field: string }
+
+const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+
+// Input with validation
+<input
+  {...register('field', { required: 'Pesan error Indonesia' })}
+  className={`... ${errors.field ? 'border-red-400' : 'border-neutral-300'}`}
+/>
+{errors.field && <p className="text-red-500 text-xs mt-1">{errors.field.message}</p>}
+```
+
+## Form States
+Forms must handle all 4 states visually:
+- `idle` — default form UI
+- `loading` — spinner + disabled button
+- `success` — success message + reset option
+- `error` — error banner + fallback WA/email link
+
+## Never
+- ❌ Use `<form>` HTML element directly — always wrap with react-hook-form
+- ❌ Hardcode API key — always use `process.env.RESEND_API_KEY`
+- ❌ Send sensitive data (NPWP, etc.) through client-side code
+- ❌ Return sensitive error details to client (use generic messages)
