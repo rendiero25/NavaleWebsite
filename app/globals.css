@@ -65,7 +65,7 @@
 
   .btn-outline-dark {
     @apply inline-flex items-center gap-2 px-8 py-4 border border-navy-900 text-navy-900 font-display font-semibold text-sm tracking-wide uppercase
-    hover:bg-navy-900 hover:text-white transition-all duration-300;
+    hover:bg-blue-brand hover:text-white transition-all duration-300;
   }
 
   .btn-whatsapp {
@@ -92,7 +92,7 @@
 @layer utilities {
   /* Swiss number label */
   .counter-label {
-    @apply font-mono text-xs text-neutral-500 tabular-nums;
+    @apply font-mono text-xs text-navy-950 tabular-nums;
   }
 
   /* Clip for before/after */

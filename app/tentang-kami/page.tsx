@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { siteUrl } from '@/lib/siteConfig'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ScrollReveal, StaggerReveal } from '@/components/ScrollReveal'
@@ -6,7 +7,23 @@ import { AnimatedCounter } from '@/components/AnimatedCounter'
 
 export const metadata: Metadata = {
   title: 'Tentang Kami',
-  description: 'CV Navale Mitratama — 8 tahun pengalaman maintenance perkapalan. Spesialis overhaul turbocharger, mesin 2-tak & 4-tak, pompa laut, kalibrasi governor, dan instalasi kelistrikan.',
+  description:
+    'Profil CV Navale Mitratama: 8+ tahun maintenance perkapalan, overhaul turbocharger & mesin, legalitas lengkap, kantor Bekasi & Jakarta Utara.',
+  keywords: [
+    'profil Navale Mitratama',
+    'perusahaan maintenance kapal Bekasi',
+    'legalitas NIB overhaul maritim',
+    'sejarah perusahaan maritim Indonesia',
+  ],
+  openGraph: {
+    title: 'Tentang Kami | CV Navale Mitratama',
+    description:
+      'Tim ahli maintenance perkapalan, visi-misi, milestone 2018–2026, dan legalitas usaha — CV Navale Mitratama.',
+    url: `${siteUrl}/tentang-kami`,
+    type: 'website',
+    locale: 'id_ID',
+    siteName: 'CV Navale Mitratama',
+  },
 }
 
 const milestones = [
@@ -62,17 +79,17 @@ export default function TentangKami() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         {/* ─── PAGE HEADER ─── */}
-        <section className="bg-navy-950 pt-36 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
+        <section className="bg-neutral-50 pt-36 pb-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10" />
           <div className="container-custom relative z-10">
             <ScrollReveal>
-              <div className="label-tag-light mb-4">Tentang Kami</div>
-              <h1 className="font-display font-extrabold text-display text-white mb-6 max-w-3xl">
+              <div className="label-tag mb-4 font-bold">Tentang Kami</div>
+              <h1 className="font-display font-extrabold text-display text-navy-900 mb-6 max-w-3xl">
                 8 Tahun Membangun Kepercayaan di Industri Maritim
               </h1>
-              <p className="font-body text-white/60 text-lg max-w-2xl leading-relaxed">
+              <p className="font-body text-navy-950 text-lg max-w-2xl leading-relaxed">
                 Dari kantor di Bekasi hingga melayani klien di seluruh perairan Indonesia, CV Navale Mitratama terus berkembang sebagai partner maintenance perkapalan yang terpercaya.
               </p>
             </ScrollReveal>
@@ -102,11 +119,11 @@ export default function TentangKami() {
         <section className="section-pad bg-white">
           <div className="container-custom grid lg:grid-cols-2 gap-20 items-center">
             <ScrollReveal direction="left">
-              <div className="label-tag mb-4">Pendahuluan</div>
+              <div className="label-tag mb-4 font-bold">Pendahuluan</div>
               <h2 className="font-display font-bold text-headline text-navy-900 mb-6">
                 Kokoh, Handal, dan Terpercaya
               </h2>
-              <div className="space-y-4 font-body text-neutral-500 leading-relaxed">
+              <div className="space-y-4 font-body text-navy-950 leading-relaxed">
                 <p>
                   CV Navale Mitratama adalah perusahaan penyedia perdagangan alat teknik mekanikal elektrikal, mesin-mesin industri suku cadang dan perlengkapannya, serta jasa reparasi, perawatan mesin-mesin, dan instalasi listrik.
                 </p>
@@ -124,8 +141,8 @@ export default function TentangKami() {
                 {values.map((v) => (
                   <div key={v.title} className="p-6 border border-neutral-200 hover:border-blue-brand/40 transition-all duration-300">
                     <div className="font-display text-3xl text-blue-brand mb-3">{v.icon}</div>
-                    <h3 className="font-display font-bold text-navy-900 text-sm mb-2">{v.title}</h3>
-                    <p className="font-body text-neutral-500 text-xs leading-relaxed">{v.desc}</p>
+                    <h3 className="font-display font-bold text-navy-900 text-md mb-2">{v.title}</h3>
+                    <p className="font-body text-navy-950 text-sm leading-relaxed">{v.desc}</p>
                   </div>
                 ))}
               </div>
@@ -137,7 +154,7 @@ export default function TentangKami() {
         <section className="section-pad bg-neutral-50">
           <div className="container-custom">
             <ScrollReveal className="mb-16">
-              <div className="label-tag mb-3">Perjalanan Kami</div>
+              <div className="label-tag mb-3 font-bold">Perjalanan Kami</div>
               <h2 className="font-display font-bold text-display text-navy-900">
                 Milestone Perusahaan
               </h2>
@@ -154,7 +171,7 @@ export default function TentangKami() {
                     <div className={`flex-1 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'} pl-16 md:pl-0`}>
                       <div className="font-mono text-blue-brand text-xs uppercase tracking-widest mb-1">{m.year}</div>
                       <h3 className="font-display font-bold text-navy-900 text-lg mb-2">{m.event}</h3>
-                      <p className="font-body text-neutral-500 text-sm leading-relaxed">{m.desc}</p>
+                      <p className="font-body text-navy-950 text-md leading-relaxed">{m.desc}</p>
                     </div>
 
                     {/* Dot */}
@@ -173,7 +190,7 @@ export default function TentangKami() {
         <section className="section-pad bg-white">
           <div className="container-custom">
             <ScrollReveal className="mb-12">
-              <div className="label-tag mb-3">Legalitas Perusahaan</div>
+              <div className="label-tag mb-3 font-bold">Legalitas Perusahaan</div>
               <h2 className="font-display font-bold text-display text-navy-900">
                 Dokumen & Perizinan
               </h2>
@@ -181,7 +198,7 @@ export default function TentangKami() {
             <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {legalDocs.map((doc) => (
                 <div key={doc.label} className="p-6 bg-neutral-50 border border-neutral-200">
-                  <div className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-1">{doc.label}</div>
+                  <div className="font-mono text-xs font-medium text-navy-950 uppercase tracking-widest mb-1">{doc.label}</div>
                   <div className="font-display font-semibold text-navy-900 text-sm">{doc.value}</div>
                 </div>
               ))}
@@ -193,7 +210,7 @@ export default function TentangKami() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <div className="label-tag-light mb-3">Kantor 1 — Bekasi</div>
-                    <p className="font-body text-white/60 text-sm leading-relaxed">
+                    <p className="font-body text-white text-sm leading-relaxed">
                       Jl. Mawar Raya No. 27 RT/RW 005/002<br />
                       Margahayu, Bekasi Timur<br />
                       Kota Bekasi, Jawa Barat 17113<br />
@@ -202,7 +219,7 @@ export default function TentangKami() {
                   </div>
                   <div>
                     <div className="label-tag-light mb-3">Kantor 2 — Jakarta</div>
-                    <p className="font-body text-white/60 text-sm leading-relaxed">
+                    <p className="font-body text-white text-sm leading-relaxed">
                       Jl. Perjuangan No. 60<br />
                       Jakarta Utara<br />
                       Telp: 0811-1010-9627

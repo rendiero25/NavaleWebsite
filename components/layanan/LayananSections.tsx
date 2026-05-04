@@ -109,17 +109,17 @@ export function LayananSections() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         {/* ─── PAGE HEADER ─── */}
-        <section className="bg-navy-950 pt-36 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
+        <section className="bg-neutral-50 pt-36 pb-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10" />
           <div className="container-custom relative z-10">
             <ScrollReveal>
-              <div className="label-tag-light mb-4">Layanan</div>
-              <h1 className="font-display font-extrabold text-display text-white mb-6 max-w-3xl">
+              <div className="label-tag mb-4 font-bold">Layanan</div>
+              <h1 className="font-display font-extrabold text-display text-navy-900 mb-6 max-w-3xl">
                 Solusi Lengkap Maintenance & Overhaul Kapal
               </h1>
-              <p className="font-body text-white/60 text-lg max-w-2xl leading-relaxed">
+              <p className="font-body text-navy-950 text-lg max-w-2xl leading-relaxed">
                 Tujuh layanan unggulan yang dirancang untuk memastikan kapal Anda beroperasi dengan aman, efisien, dan terpercaya.
               </p>
             </ScrollReveal>
@@ -133,9 +133,9 @@ export function LayananSections() {
               <ScrollReveal key={svc.id} delay={0.05 * (i % 3)}>
                 <div className={`grid lg:grid-cols-5 gap-8 py-16 border-b border-neutral-200 ${i === 0 ? 'border-t' : ''}`}>
                   <div className="lg:col-span-1">
-                    <span className="font-mono text-6xl font-bold text-neutral-100 leading-none">{svc.id}</span>
+                    <span className="font-mono text-6xl font-bold text-blue-brand leading-none">{svc.id}</span>
                     <div className="mt-3">
-                      <span className="inline-block font-mono text-[10px] text-blue-brand uppercase tracking-widest border border-blue-brand/30 px-2 py-0.5">
+                      <span className="inline-block font-mono font-medium text-[13px] text-blue-brand uppercase tracking-widest border border-blue-brand/30 px-2 py-0.5">
                         {svc.badge}
                       </span>
                     </div>
@@ -144,14 +144,14 @@ export function LayananSections() {
                   <div className="lg:col-span-2">
                     <h2 className="font-display font-bold text-navy-900 text-2xl mb-2">{svc.title}</h2>
                     <p className="font-mono text-xs text-blue-brand uppercase tracking-wide mb-4">{svc.headline}</p>
-                    <p className="font-body text-neutral-500 leading-relaxed text-sm">{svc.desc}</p>
+                    <p className="font-body text-navy-950 leading-relaxed text-sm">{svc.desc}</p>
                   </div>
 
                   <div className="lg:col-span-2">
-                    <div className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-4">Cakupan Layanan</div>
+                    <div className="font-mono font-medium text-xs text-navy-950 uppercase tracking-widest mb-4">Cakupan Layanan</div>
                     <ul className="space-y-2">
                       {svc.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3 text-sm font-body text-neutral-600">
+                        <li key={f} className="flex items-start gap-3 text-sm font-body text-neutral-800">
                           <span className="mt-1 w-4 h-4 shrink-0 rounded-full bg-blue-muted flex items-center justify-center">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-brand" />
                           </span>

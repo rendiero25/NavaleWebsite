@@ -68,17 +68,17 @@ export default function Kontak() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         {/* ─── PAGE HEADER ─── */}
-        <section className="bg-navy-950 pt-36 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
+        <section className="bg-neutral-50 pt-36 pb-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10" />
           <div className="container-custom relative z-10">
             <ScrollReveal>
-              <div className="label-tag-light mb-4">Kontak</div>
-              <h1 className="font-display font-extrabold text-display text-white mb-6 max-w-2xl">
+              <div className="label-tag mb-4 font-bold">Kontak</div>
+              <h1 className="font-display font-extrabold text-display text-navy-900 mb-6 max-w-2xl">
                 Mari Berdiskusi
               </h1>
-              <p className="font-body text-white/60 text-lg max-w-xl leading-relaxed">
+              <p className="font-body text-navy-950 text-lg max-w-xl leading-relaxed">
                 Konsultasi gratis untuk kebutuhan maintenance kapal Anda. Tim kami siap merespons dalam waktu 1×24 jam.
               </p>
             </ScrollReveal>
@@ -114,7 +114,7 @@ export default function Kontak() {
                 <div className="space-y-6">
                   <div>
                     <div className="label-tag mb-2">Office 1 — Bekasi</div>
-                    <p className="font-body text-neutral-600 text-sm leading-relaxed">
+                    <p className="font-body text-navy-950 text-sm leading-relaxed">
                       Jl. Mawar Raya No. 27 RT/RW 005/002<br />
                       Margahayu, Bekasi Timur<br />
                       Kota Bekasi, Jawa Barat 17113
@@ -125,7 +125,7 @@ export default function Kontak() {
                   </div>
                   <div className="border-t border-neutral-200 pt-6">
                     <div className="label-tag mb-2">Office 2 — Jakarta</div>
-                    <p className="font-body text-neutral-600 text-sm leading-relaxed">
+                    <p className="font-body text-navy-950 text-sm leading-relaxed">
                       Jl. Perjuangan No. 60<br />
                       Jakarta Utara
                     </p>
@@ -146,10 +146,10 @@ export default function Kontak() {
             {/* ─── Right: Form ─── */}
             <ScrollReveal direction="right" delay={0.15} className="lg:col-span-2">
               {status === 'success' ? (
-                <div className="border border-green-200 bg-green-50 p-10 text-center">
+                <div role="status" className="border border-green-200 bg-green-50 p-10 text-center">
                   <div className="text-5xl mb-4">✅</div>
                   <h3 className="font-display font-bold text-navy-900 text-xl mb-2">Pesan Terkirim!</h3>
-                  <p className="font-body text-neutral-600 mb-6">
+                  <p className="font-body text-navy-950 mb-6">
                     Terima kasih telah menghubungi kami. Tim kami akan merespons dalam 1×24 jam.
                   </p>
                   <button onClick={() => setStatus('idle')} className="btn-outline-dark">
@@ -163,26 +163,30 @@ export default function Kontak() {
                   <div className="grid md:grid-cols-2 gap-5">
                     {/* Name */}
                     <div>
-                      <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                      <label htmlFor="name" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                         Nama Lengkap *
                       </label>
                       <input
+                        id="name"
                         {...register('name', { required: 'Nama wajib diisi' })}
                         type="text"
                         placeholder="Budi Santoso"
-                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400 
+                        aria-describedby={errors.name ? 'name-error' : undefined}
+                        aria-invalid={!!errors.name}
+                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400
                           focus:outline-none focus:border-blue-brand transition-colors bg-white
                           ${errors.name ? 'border-red-400' : 'border-neutral-300'}`}
                       />
-                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                      {errors.name && <p id="name-error" role="alert" className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                     </div>
 
                     {/* Company */}
                     <div>
-                      <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                      <label htmlFor="company" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                         Nama Perusahaan
                       </label>
                       <input
+                        id="company"
                         {...register('company')}
                         type="text"
                         placeholder="PT. Maju Bersama (opsional)"
@@ -192,48 +196,57 @@ export default function Kontak() {
 
                     {/* Email */}
                     <div>
-                      <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                      <label htmlFor="email" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                         Email *
                       </label>
                       <input
+                        id="email"
                         {...register('email', {
                           required: 'Email wajib diisi',
                           pattern: { value: /^\S+@\S+\.\S+$/, message: 'Format email tidak valid' },
                         })}
                         type="email"
                         placeholder="budi@example.com"
-                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400 
+                        aria-describedby={errors.email ? 'email-error' : undefined}
+                        aria-invalid={!!errors.email}
+                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400
                           focus:outline-none focus:border-blue-brand transition-colors bg-white
                           ${errors.email ? 'border-red-400' : 'border-neutral-300'}`}
                       />
-                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                      {errors.email && <p id="email-error" role="alert" className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
 
                     {/* Phone */}
                     <div>
-                      <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                      <label htmlFor="phone" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                         No. Telepon / WhatsApp *
                       </label>
                       <input
+                        id="phone"
                         {...register('phone', { required: 'No. telepon wajib diisi' })}
                         type="tel"
                         placeholder="081234567890"
-                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400 
+                        aria-describedby={errors.phone ? 'phone-error' : undefined}
+                        aria-invalid={!!errors.phone}
+                        className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400
                           focus:outline-none focus:border-blue-brand transition-colors bg-white
                           ${errors.phone ? 'border-red-400' : 'border-neutral-300'}`}
                       />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                      {errors.phone && <p id="phone-error" role="alert" className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                     </div>
                   </div>
 
                   {/* Service */}
                   <div>
-                    <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                    <label htmlFor="service" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                       Layanan yang Dibutuhkan *
                     </label>
                     <select
+                      id="service"
                       {...register('service', { required: 'Pilih layanan' })}
-                      className={`w-full px-4 py-3 border font-body text-sm text-navy-900 
+                      aria-describedby={errors.service ? 'service-error' : undefined}
+                      aria-invalid={!!errors.service}
+                      className={`w-full px-4 py-3 border font-body text-sm text-navy-900
                         focus:outline-none focus:border-blue-brand transition-colors bg-white appearance-none
                         ${errors.service ? 'border-red-400' : 'border-neutral-300'}`}
                     >
@@ -242,27 +255,30 @@ export default function Kontak() {
                         <option key={s} value={s}>{s}</option>
                       ))}
                     </select>
-                    {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
+                    {errors.service && <p id="service-error" role="alert" className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label className="block font-mono text-[11px] text-neutral-500 uppercase tracking-widest mb-2">
+                    <label htmlFor="message" className="block font-mono text-[11px] text-navy-950 uppercase tracking-widest mb-2">
                       Detail Kebutuhan *
                     </label>
                     <textarea
+                      id="message"
                       {...register('message', { required: 'Pesan wajib diisi', minLength: { value: 20, message: 'Pesan minimal 20 karakter' } })}
                       rows={5}
                       placeholder="Ceritakan kebutuhan maintenance kapal Anda: jenis kapal, mesin, masalah yang dihadapi, dll."
-                      className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400 
+                      aria-describedby={errors.message ? 'message-error' : undefined}
+                      aria-invalid={!!errors.message}
+                      className={`w-full px-4 py-3 border font-body text-sm text-navy-900 placeholder-neutral-400
                         focus:outline-none focus:border-blue-brand transition-colors bg-white resize-none
                         ${errors.message ? 'border-red-400' : 'border-neutral-300'}`}
                     />
-                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+                    {errors.message && <p id="message-error" role="alert" className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                   </div>
 
                   {status === 'error' && (
-                    <div className="bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-body">
+                    <div role="alert" className="bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-body">
                       Terjadi kesalahan. Silahkan kirim pesan via WhatsApp atau email langsung.
                     </div>
                   )}
@@ -307,7 +323,7 @@ export default function Kontak() {
                     </a>
                   </div>
 
-                  <p className="font-mono text-[10px] text-neutral-400 text-center">
+                  <p className="font-mono text-[14px] text-navy-950 text-center">
                     Dengan mengirim pesan, Anda setuju dihubungi kembali oleh tim kami.
                   </p>
                 </form>

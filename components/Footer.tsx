@@ -23,14 +23,14 @@ export function Footer() {
   return (
     <footer className="bg-navy-950 text-white">
       {/* Top bar */}
-      <div className="container-custom py-6 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="container-custom py-8 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Image
             src="/images/logo.jpeg"
-            alt=""
+            alt="Logo CV Navale Mitratama"
             width={44}
             height={44}
-            className="h-11 w-11 shrink-0 object-contain rounded-sm bg-white/5 ring-1 ring-white/10"
+            className="h-10 w-10 shrink-0 object-cover"
           />
           <p className="font-display font-bold text-2xl tracking-tight">
             CV NAVALE MITRATAMA
@@ -59,7 +59,7 @@ export function Footer() {
             Spesialis maintenance perkapalan dengan pengalaman 8 tahun. Didukung tenaga profesional dan berpengalaman untuk hasil kerja optimal.
           </p>
           <div className="space-y-1">
-            <div className="font-mono text-[11px] text-neutral-500 uppercase tracking-wider">Berdiri</div>
+            <div className="font-mono text-[11px] text-navy-950 uppercase tracking-wider">Berdiri</div>
             <div className="font-display font-bold text-white text-xl">Sejak 2018</div>
           </div>
         </div>
@@ -96,7 +96,7 @@ export function Footer() {
           <div className="label-tag-light mb-4">Kontak</div>
           <div className="space-y-4 text-sm">
             <div>
-              <div className="font-mono text-[11px] text-neutral-500 uppercase tracking-wider mb-1">Office 1 — Bekasi</div>
+              <div className="font-mono text-[11px] text-navy-950 uppercase tracking-wider mb-1">Office 1 — Bekasi</div>
               <p className="text-white/60 leading-relaxed">
                 Jl. Mawar Raya No. 27 RT/RW 005/002<br />
                 Margahayu, Bekasi Timur<br />
@@ -104,7 +104,7 @@ export function Footer() {
               </p>
             </div>
             <div>
-              <div className="font-mono text-[11px] text-neutral-500 uppercase tracking-wider mb-1">Office 2 — Jakarta</div>
+              <div className="font-mono text-[11px] text-navy-950 uppercase tracking-wider mb-1">Office 2 — Jakarta</div>
               <p className="text-white/60 leading-relaxed">
                 Jl. Perjuangan No. 60<br />
                 Jakarta Utara
@@ -125,6 +125,9 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="container-custom py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
         <p>© {new Date().getFullYear()} CV Navale Mitratama. All rights reserved.</p>
+        
+        <p>Developed by <a href="https://www.rendiero.site" target="_blank" rel="noopener noreferrer" className="font-bold text-white">rendiero.</a></p>
+        
         <div className="flex items-center gap-4">
           <span>NIB: 0220304200164</span>
           <span>·</span>

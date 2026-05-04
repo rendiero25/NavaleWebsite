@@ -15,7 +15,7 @@ Phase 3 — Core Components           [ 15/15 ]
 Phase 4 — Pages                     [ 20/20 ]
 Phase 5 — Galeri & Media            [ 0/8  ]
 Phase 6 — Kontak & Email            [ 0/7  ]
-Phase 7 — SEO & Performance         [ 0/8  ]
+Phase 7 — SEO & Performance         [ 7/8  ]
 Phase 8 — Testing & QA              [ 0/9  ]
 Phase 9 — Deployment                [ 0/6  ]
 Phase 10 — Post-Launch              [ 0/5  ]
@@ -228,7 +228,7 @@ Phase 10 — Post-Launch              [ 0/5  ]
 
 > Target: Lighthouse score ≥ 90 semua kategori
 
-- [ ] **7.1** Isi metadata lengkap di setiap halaman:
+- [x] **7.1** Isi metadata lengkap di setiap halaman:
   ```ts
   export const metadata: Metadata = {
     title: '...',
@@ -238,16 +238,16 @@ Phase 10 — Post-Launch              [ 0/5  ]
   }
   ```
 
-- [ ] **7.2** Tambahkan logo perusahaan ke `/public/images/logo.png`
+- [x] **7.2** Tambahkan logo perusahaan ke `/public/images/logo.png`
   - Gunakan di metadata OpenGraph
   - Update `<Navbar>` untuk tampilkan logo gambar (opsional)
 
-- [ ] **7.3** Tambahkan favicon:
+- [x] **7.3** Tambahkan favicon:
   - `/public/favicon.ico`
   - `/public/icon.png` (512×512)
   - `/public/apple-icon.png` (180×180)
 
-- [ ] **7.4** Buat `app/sitemap.ts` untuk sitemap otomatis:
+- [x] **7.4** Buat `app/sitemap.ts` untuk sitemap otomatis:
   ```ts
   import { MetadataRoute } from 'next'
   export default function sitemap(): MetadataRoute.Sitemap {
@@ -259,7 +259,7 @@ Phase 10 — Post-Launch              [ 0/5  ]
   }
   ```
 
-- [ ] **7.5** Buat `app/robots.ts`:
+- [x] **7.5** Buat `app/robots.ts`:
   ```ts
   import { MetadataRoute } from 'next'
   export default function robots(): MetadataRoute.Robots {
@@ -270,9 +270,9 @@ Phase 10 — Post-Launch              [ 0/5  ]
   }
   ```
 
-- [ ] **7.6** Pastikan semua `<img>` pakai `next/image` (tidak ada `<img>` telanjang)
+- [x] **7.6** Pastikan semua `<img>` pakai `next/image` (tidak ada `<img>` telanjang)
 
-- [ ] **7.7** Jalankan `npm run build` — pastikan 0 error, 0 TypeScript error
+- [x] **7.7** Jalankan `npm run build` — pastikan 0 error, 0 TypeScript error
 
 - [ ] **7.8** Jalankan Lighthouse di Chrome DevTools (mode Incognito):
   - Performance ≥ 90

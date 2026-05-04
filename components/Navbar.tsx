@@ -69,30 +69,24 @@ export function Navbar() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-navy-950/95 backdrop-blur-md border-b border-white/5 py-4'
+            ? 'bg-white backdrop-blur-md py-3 shadow-lg'
             : isHome
-            ? 'bg-transparent py-6'
-            : 'bg-navy-950 py-5'
+            ? 'bg-white py-6'
+            : 'bg-white py-5'
         }`}
       >
         <div className="container-custom flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-sm bg-white/5 ring-1 ring-white/10 transition-opacity duration-300 group-hover:opacity-90">
+            <div className="relative w-45 shrink-0 overflow-hidden transition-opacity duration-300 group-hover:opacity-90">
               <Image
                 src="/images/logo.jpeg"
                 alt="CV Navale Mitratama"
-                width={36}
-                height={36}
+                width={45}
+                height={45}
                 className="h-full w-full object-contain"
                 priority
               />
-            </div>
-            <div>
-              <div className="font-display font-bold text-white text-sm leading-none tracking-wide">NAVALE</div>
-              <div className="font-mono text-[9px] text-blue-pale tracking-widest uppercase leading-none mt-0.5">
-                MITRATAMA
-              </div>
             </div>
           </Link>
 
@@ -102,8 +96,8 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-display text-[13px] font-medium tracking-wide uppercase transition-colors duration-200 hover-underline
-                  ${pathname === link.href ? 'text-blue-pale' : 'text-white/70 hover:text-white'}`}
+                className={`font-display text-[14px] font-bold transition-colors duration-200 hover-underline
+                  ${pathname === link.href ? 'text-blue-brand' : 'text-navy-900 hover:text-navy-900'}`}
               >
                 {link.label}
               </Link>
@@ -132,9 +126,9 @@ export function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'}`} />
-            <span className={`block h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 w-0' : 'w-4'}`} />
-            <span className={`block h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-6'}`} />
+            <span className={`block h-0.5 bg-navy-900 transition-all duration-300 ${menuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'}`} />
+            <span className={`block h-0.5 bg-navy-900 transition-all duration-300 ${menuOpen ? 'opacity-0 w-0' : 'w-4'}`} />
+            <span className={`block h-0.5 bg-navy-900 transition-all duration-300 ${menuOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-6'}`} />
           </button>
         </div>
       </nav>
@@ -155,7 +149,7 @@ export function Navbar() {
                 className={`block font-display text-4xl font-bold py-3 border-b border-white/10 transition-colors hover:text-blue-pale
                   ${pathname === link.href ? 'text-blue-pale' : 'text-white'}`}
               >
-                <span className="font-mono text-sm text-neutral-500 mr-4">0{i + 1}</span>
+                <span className="font-mono text-sm text-navy-950 mr-4">0{i + 1}</span>
                 {link.label}
               </Link>
             ))}
