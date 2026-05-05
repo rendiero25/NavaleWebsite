@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -14,6 +12,12 @@ function escapeHtml(str: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
+    }
+    const resend = new Resend(apiKey)
+
     const body = await req.json()
     const { name, company, email, phone, service, message } = body
 

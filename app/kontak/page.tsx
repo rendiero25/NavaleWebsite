@@ -147,7 +147,7 @@ export default function Kontak() {
             <ScrollReveal direction="right" delay={0.15} className="lg:col-span-2">
               {status === 'success' ? (
                 <div role="status" className="border border-green-200 bg-green-50 p-10 text-center">
-                  <div className="text-5xl mb-4">✅</div>
+                  <div className="text-3xl mb-4">✅</div>
                   <h3 className="font-display font-bold text-navy-900 text-xl mb-2">Pesan Terkirim!</h3>
                   <p className="font-body text-navy-950 mb-6">
                     Terima kasih telah menghubungi kami. Tim kami akan merespons dalam 1×24 jam.

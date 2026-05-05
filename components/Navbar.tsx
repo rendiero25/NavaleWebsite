@@ -78,12 +78,12 @@ export function Navbar() {
         <div className="container-custom flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-45 shrink-0 overflow-hidden transition-opacity duration-300 group-hover:opacity-90">
+            <div className="relative w-50 shrink-0 overflow-hidden transition-opacity duration-300 group-hover:opacity-90">
               <Image
                 src="/images/logo.jpeg"
                 alt="CV Navale Mitratama"
-                width={45}
-                height={45}
+                width={60}
+                height={60}
                 className="h-full w-full object-contain"
                 priority
               />

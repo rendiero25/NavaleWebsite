@@ -164,17 +164,17 @@ Phase 10 — Post-Launch              [ 0/5  ]
 
 > Target: Halaman galeri terisi dengan foto dan video nyata
 
-- [ ] **5.1** Kumpulkan foto-foto hasil pekerjaan dari tim Navale
+- [x] **5.1** Kumpulkan foto-foto hasil pekerjaan dari tim Navale
   - Minimum: 6 foto before/after
   - Minimum: 4 foto dokumentasi proses
   - Minimal: 1 video (YouTube atau lokal)
 
-- [ ] **5.2** Optimasi semua foto sebelum upload
+- [x] **5.2** Optimasi semua foto sebelum upload
   - Resize ke max 1200×675px (16:9)
   - Compress ke WebP atau JPG max 500KB
   - Tools: [Squoosh](https://squoosh.app) atau `sharp` CLI
 
-- [ ] **5.3** Upload foto ke folder yang benar:
+- [x] **5.3** Upload foto ke folder yang benar:
   ```
   /public/gallery/before/    ← foto sebelum
   /public/gallery/after/     ← foto sesudah (nama sama dengan before)
@@ -182,15 +182,15 @@ Phase 10 — Post-Launch              [ 0/5  ]
   /public/gallery/videos/    ← video lokal
   ```
 
-- [ ] **5.4** Edit `app/galeri/page.tsx` → isi array `galleryItems` dengan entry foto nyata
+- [x] **5.4** Edit `app/galeri/page.tsx` → isi array `galleryItems` dengan entry foto nyata
 
-- [ ] **5.5** Test BeforeAfterSlider dengan foto nyata (drag/touch)
+- [x] **5.5** Test BeforeAfterSlider dengan foto nyata (drag/touch)
 
-- [ ] **5.6** Test lightbox foto single (klik → fullscreen → klik luar/× untuk tutup)
+- [x] **5.6** Test lightbox foto single (klik → fullscreen → klik luar/× untuk tutup)
 
-- [ ] **5.7** Test video embed YouTube (pastikan video public/unlisted)
+- [x] **5.7** Test video embed YouTube (pastikan video public/unlisted)
 
-- [ ] **5.8** Update gallery teaser di homepage (`app/page.tsx`) — ganti placeholder dengan foto nyata
+- [x] **5.8** Update gallery teaser di homepage (`app/page.tsx`) — ganti placeholder dengan foto nyata
 
 ---
 

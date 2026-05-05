@@ -7,13 +7,18 @@ import { Footer } from '@/components/Footer'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import type { GalleryProject, GalleryProjectPhoto } from '@/lib/gallery-types'
 
-const categories = ['Semua', 'Turbocharger', 'Mesin', 'Pompa', 'Governor', 'Kelistrikan', 'Lainnya']
+const CATEGORY_ORDER = ['Turbocharger', 'Mesin', 'Pompa', 'Governor', 'Kelistrikan', 'Lainnya']
 
 interface GaleriClientProps {
   projects: GalleryProject[]
 }
 
 export function GaleriClient({ projects }: GaleriClientProps) {
+  const categories = [
+    'Semua',
+    ...CATEGORY_ORDER.filter(cat => projects.some(p => p.category === cat)),
+  ]
+
   const [activeCategory, setActiveCategory] = useState('Semua')
   const [viewerOpen, setViewerOpen] = useState(false)
   const [viewerIndex, setViewerIndex] = useState(0)

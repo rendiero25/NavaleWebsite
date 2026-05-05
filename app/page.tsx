@@ -98,7 +98,7 @@ export default function HomePage() {
               {stats.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`py-10 px-6 border-white/20 ${i < stats.length - 1 ? 'border-r' : ''} ${i >= 2 ? 'border-t lg:border-t-0' : ''}`}
+                  className={`py-10 px-6 border-white/20 ${i < stats.length - 1 ? 'lg:border-r' : ''} ${i >= 2 ? 'border-t lg:border-t-0' : ''}`}
                 >
                   <div className="font-display font-extrabold text-5xl text-white leading-none mb-1">
                     <AnimatedCounter end={stat.value} suffix={stat.suffix} />
@@ -141,13 +141,13 @@ export default function HomePage() {
                     <div className="label-tag-light mb-6">Visi & Misi</div>
                     <div className="mb-8">
                       <div className="font-mono text-xs text-neutral-500 uppercase tracking-widest mb-2">Visi</div>
-                      <p className="font-display font-semibold text-white text-xl leading-snug">
+                      <p className="font-display font-medium text-white text-lg leading-snug">
                         Menjadi Partner Terbaik sebagai Perdagangan Nasional
                       </p>
                     </div>
                     <div className="border-t border-white/10 pt-8">
                       <div className="font-mono text-xs text-neutral-500 uppercase tracking-widest mb-2">Misi</div>
-                      <p className="font-body text-white/70 leading-relaxed">
+                      <p className="font-display font-medium text-white text-lg leading-snug">
                         Memberikan kepuasan pelanggan dengan hasil pekerjaan yang bermutu, harga kompetitif, dan penyelesaian tepat waktu.
                       </p>
                     </div>
@@ -243,11 +243,11 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
           <div className="container-custom relative z-10 text-center">
             <ScrollReveal>
-              <div className="label-tag-light mb-4">Mulai Sekarang</div>
+              <div className="label-tag-light mb-4 font-bold">Mulai Sekarang</div>
               <h2 className="font-display font-extrabold text-display text-white mb-6">
                 Siap Menjadi Partner<br />Maintenance Kapal Anda
               </h2>
-              <p className="font-body text-white/70 text-lg mb-10 max-w-xl mx-auto">
+              <p className="font-body text-white text-lg mb-10 max-w-xl mx-auto">
                 Konsultasi gratis, respon cepat, solusi tepat. Hubungi kami sekarang untuk kebutuhan maintenance perkapalan Anda.
               </p>
               <div className="flex flex-wrap justify-center gap-4">

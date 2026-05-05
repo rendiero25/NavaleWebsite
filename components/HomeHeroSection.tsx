@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { gsap } from '@/lib/gsap-client'
 
 export function HomeHeroSection() {
@@ -27,13 +28,6 @@ export function HomeHeroSection() {
         .fromTo(heroCTARef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
         .fromTo(scrollIndicatorRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5 }, '-=0.2')
 
-      gsap.to(heroRef.current, {
-        backgroundColor: '#2E86C1',
-        duration: 4,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      })
     }, heroRef)
 
     return () => ctx.revert()
@@ -42,14 +36,20 @@ export function HomeHeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen bg-blue-brand flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
+      {/* Background image */}
+      <Image
+        src="/images/bg-hero.jpg"
+        alt=""
+        fill
+        className="object-cover object-center"
+        priority
+        quality={85}
+      />
 
-      {/* Gradient overlays */}
-      <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-radial from-white/10 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-radial from-white/5 to-transparent" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-navy-950/80" />
 
       {/* Content */}
       <div className="container-custom relative z-10 pt-28 pb-20">
@@ -57,7 +57,7 @@ export function HomeHeroSection() {
           {/* Tag */}
           <div ref={heroTagRef} className="flex items-center gap-3 mb-10" style={{ opacity: 0 }}>
             <div className="w-8 h-px bg-blue-pale" />
-            <span className="label-tag-light">Maintenance Perkapalan Profesional · Berdiri 2018</span>
+            <span className="label-tag-light text-white">Maintenance Perkapalan Profesional · Berdiri 2018</span>
           </div>
 
           {/* Main title */}
@@ -67,14 +67,14 @@ export function HomeHeroSection() {
             style={{ overflow: 'hidden' }}
           >
             <span className="hero-line block" style={{ opacity: 0 }}>PARTNER</span>
-            <span className="hero-line block text-white/80" style={{ opacity: 0 }}>TERPERCAYA</span>
+            <span className="hero-line block text-white/50" style={{ opacity: 0 }}>TERPERCAYA</span>
             <span className="hero-line block" style={{ opacity: 0 }}>PERKAPALAN.</span>
           </h1>
 
           {/* Sub */}
           <p
             ref={heroSubRef}
-            className="font-body text-white/70 text-lg leading-relaxed mb-10"
+            className="font-body text-white text-xl leading-relaxed mb-10"
             style={{ opacity: 0 }}
           >
             Spesialis overhaul turbocharger, mesin 2-tak & 4-tak, pompa laut, kalibrasi governor,
@@ -102,12 +102,6 @@ export function HomeHeroSection() {
             </Link>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div ref={scrollIndicatorRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: 0 }}>
-        <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent animate-pulse-slow" />
       </div>
     </section>
   )

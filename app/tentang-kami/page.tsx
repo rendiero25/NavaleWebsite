@@ -105,7 +105,7 @@ export default function TentangKami() {
               { val: 2, suf: '', label: 'Kantor Operasional' },
               { val: 7, suf: '', label: 'Jenis Layanan' },
             ].map((s, i) => (
-              <div key={s.label} className={`py-10 px-6 ${i < 3 ? 'border-r border-white/20' : ''} ${i >= 2 ? 'border-t lg:border-t-0 border-white/20' : ''}`}>
+              <div key={s.label} className={`py-10 px-6 ${i < 3 ? 'lg:border-r border-white/20' : ''} ${i >= 2 ? 'border-t lg:border-t-0 border-white/20' : ''}`}>
                 <div className="font-display font-extrabold text-4xl text-white">
                   <AnimatedCounter end={s.val} suffix={s.suf} />
                 </div>
@@ -169,7 +169,7 @@ export default function TentangKami() {
                   <div key={m.year} className={`relative flex gap-8 md:gap-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     {/* Content */}
                     <div className={`flex-1 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'} pl-16 md:pl-0`}>
-                      <div className="font-mono text-blue-brand text-xs uppercase tracking-widest mb-1">{m.year}</div>
+                      <div className="font-mono text-blue-brand text-sm font-medium uppercase tracking-widest mb-1">{m.year}</div>
                       <h3 className="font-display font-bold text-navy-900 text-lg mb-2">{m.event}</h3>
                       <p className="font-body text-navy-950 text-md leading-relaxed">{m.desc}</p>
                     </div>
