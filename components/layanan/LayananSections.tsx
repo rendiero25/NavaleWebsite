@@ -111,7 +111,7 @@ export function LayananSections() {
       <Navbar />
       <main id="main-content">
         {/* ─── PAGE HEADER ─── */}
-        <section className="bg-neutral-50 pt-36 pb-20 relative overflow-hidden">
+        <section className="bg-neutral-100 pt-36 pb-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10" />
           <div className="container-custom relative z-10">
             <ScrollReveal>
@@ -127,33 +127,33 @@ export function LayananSections() {
         </section>
 
         {/* ─── SERVICE LIST ─── */}
-        <section className="section-pad bg-white">
+        <section className="section-pad bg-blue-brand">
           <div className="container-custom space-y-0">
             {services.map((svc, i) => (
               <ScrollReveal key={svc.id} delay={0.05 * (i % 3)}>
-                <div className={`grid lg:grid-cols-5 gap-8 py-16 border-b border-neutral-200 ${i === 0 ? 'border-t' : ''}`}>
+                <div className={`grid lg:grid-cols-5 gap-8 py-16 border-b border-white/15 ${i === 0 ? 'border-t' : ''}`}>
                   <div className="lg:col-span-1">
-                    <span className="font-mono text-6xl font-bold text-blue-brand leading-none">{svc.id}</span>
+                    <span className="font-mono text-6xl font-bold text-white/25 leading-none">{svc.id}</span>
                     <div className="mt-3">
-                      <span className="inline-block font-mono font-medium text-[13px] text-blue-brand uppercase tracking-widest border border-blue-brand/30 px-2 py-0.5">
+                      <span className="inline-block font-mono font-medium text-[13px] text-white uppercase tracking-widest border border-white/30 px-2 py-0.5">
                         {svc.badge}
                       </span>
                     </div>
                   </div>
 
                   <div className="lg:col-span-2">
-                    <h2 className="font-display font-bold text-navy-900 text-2xl mb-2">{svc.title}</h2>
-                    <p className="font-mono text-xs text-blue-brand uppercase tracking-wide mb-4">{svc.headline}</p>
-                    <p className="font-body text-navy-950 leading-relaxed text-sm">{svc.desc}</p>
+                    <h2 className="font-display font-bold text-white text-2xl mb-2">{svc.title}</h2>
+                    <p className="font-mono text-xs text-blue-pale uppercase tracking-wide mb-4">{svc.headline}</p>
+                    <p className="font-body text-white/75 leading-relaxed text-sm">{svc.desc}</p>
                   </div>
 
                   <div className="lg:col-span-2">
-                    <div className="font-mono font-medium text-xs text-navy-950 uppercase tracking-widest mb-4">Cakupan Layanan</div>
+                    <div className="font-mono font-medium text-xs text-white/50 uppercase tracking-widest mb-4">Cakupan Layanan</div>
                     <ul className="space-y-2">
                       {svc.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3 text-sm font-body text-neutral-800">
-                          <span className="mt-1 w-4 h-4 shrink-0 rounded-full bg-blue-muted flex items-center justify-center">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-brand" />
+                        <li key={f} className="flex items-start gap-3 text-sm font-body text-white/80">
+                          <span className="mt-1 w-4 h-4 shrink-0 rounded-full bg-white/15 flex items-center justify-center">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white" />
                           </span>
                           {f}
                         </li>
@@ -183,7 +183,7 @@ export function LayananSections() {
               <ScrollReveal direction="right" delay={0.15}>
                 <div className="space-y-4">
                   <a
-                    href="https://wa.me/6281219445330?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan."
+                    href="https://wa.me/6281110109627?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-whatsapp w-full justify-center"

@@ -15,7 +15,7 @@ const navLinks = [
 ]
 
 const waNavbarHref =
-  'https://wa.me/6281219445330?text=' +
+  'https://wa.me/6281110109627?text=' +
   encodeURIComponent(
     'Halo CV Navale Mitratama, saya ingin bertanya mengenai layanan maintenance perkapalan.'
   )

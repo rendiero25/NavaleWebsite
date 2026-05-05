@@ -68,6 +68,57 @@ const services = [
   },
 ]
 
+const cardStyles = [
+  {
+    bg: 'bg-white',
+    border: 'border-neutral-200 hover:border-blue-brand/40',
+    num: 'text-navy-950',
+    title: 'text-navy-900 group-hover:text-blue-brand',
+    desc: 'text-navy-950',
+    bar: 'bg-blue-brand',
+  },
+  {
+    bg: 'bg-navy-900',
+    border: 'border-white/10 hover:border-blue-pale/40',
+    num: 'text-white/30',
+    title: 'text-white group-hover:text-blue-pale',
+    desc: 'text-white/90',
+    bar: 'bg-blue-pale',
+  },
+  {
+    bg: 'bg-blue-muted',
+    border: 'border-blue-pale/30 hover:border-blue-brand/40',
+    num: 'text-navy-950',
+    title: 'text-navy-900 group-hover:text-blue-brand',
+    desc: 'text-navy-950',
+    bar: 'bg-blue-brand',
+  },
+  {
+    bg: 'bg-blue-brand',
+    border: 'border-white/20 hover:border-white/50',
+    num: 'text-white/40',
+    title: 'text-white group-hover:text-white/80',
+    desc: 'text-white/80',
+    bar: 'bg-white',
+  },
+  {
+    bg: 'bg-neutral-100',
+    border: 'border-neutral-200 hover:border-blue-brand/40',
+    num: 'text-navy-950',
+    title: 'text-navy-900 group-hover:text-blue-brand',
+    desc: 'text-navy-950',
+    bar: 'bg-blue-brand',
+  },
+  {
+    bg: 'bg-navy-950',
+    border: 'border-white/10 hover:border-blue-brand/50',
+    num: 'text-white/30',
+    title: 'text-white group-hover:text-blue-pale',
+    desc: 'text-white/90',
+    bar: 'bg-blue-brand',
+  },
+]
+
 const stats = [
   { value: 8, suffix: '+', label: 'Tahun Pengalaman', sub: 'Berdiri sejak 2018' },
   { value: 6, suffix: '+', label: 'Tahun Mitra', sub: 'Bekerjasama dengan pemerintah' },
@@ -160,7 +211,7 @@ export default function HomePage() {
         </section>
 
         {/* ─── SERVICES PREVIEW ─── */}
-        <section className="section-pad bg-neutral-50">
+        <section className="section-pad bg-neutral-100">
           <div className="container-custom">
             <ScrollReveal className="mb-16">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -177,19 +228,22 @@ export default function HomePage() {
             </ScrollReveal>
 
             <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-200">
-              {services.map((svc) => (
-                <div key={svc.id} className="service-card group bg-white">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="text-3xl">{svc.icon}</div>
-                    <span className="font-mono text-xs text-navy-950">{svc.id}</span>
+              {services.map((svc, i) => {
+                const s = cardStyles[i]
+                return (
+                  <div key={svc.id} className={`group p-8 border transition-colors duration-300 ${s.bg} ${s.border}`}>
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="text-3xl">{svc.icon}</div>
+                      <span className={`font-mono text-xs ${s.num}`}>{svc.id}</span>
+                    </div>
+                    <h3 className={`font-display font-bold text-lg mb-3 transition-colors duration-300 ${s.title}`}>
+                      {svc.title}
+                    </h3>
+                    <p className={`font-body text-sm leading-relaxed ${s.desc}`}>{svc.desc}</p>
+                    <div className={`mt-6 w-8 h-0.5 transition-all duration-300 group-hover:w-16 ${s.bar}`} />
                   </div>
-                  <h3 className="font-display font-bold text-navy-900 text-lg mb-3 group-hover:text-blue-brand transition-colors">
-                    {svc.title}
-                  </h3>
-                  <p className="font-body text-navy-950 text-sm leading-relaxed">{svc.desc}</p>
-                  <div className="mt-6 w-8 h-0.5 bg-blue-brand transition-all duration-300 group-hover:w-16" />
-                </div>
-              ))}
+                )
+              })}
             </StaggerReveal>
           </div>
         </section>
@@ -252,7 +306,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
-                  href="https://wa.me/6281219445330?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi."
+                  href="https://wa.me/6281110109627?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp"

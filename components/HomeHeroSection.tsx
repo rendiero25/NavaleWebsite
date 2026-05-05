@@ -84,7 +84,7 @@ export function HomeHeroSection() {
           {/* CTA */}
           <div ref={heroCTARef} className="flex flex-wrap gap-4" style={{ opacity: 0 }}>
             <a
-              href="https://wa.me/6281219445330?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20maintenance%20perkapalan."
+              href="https://wa.me/6281110109627?text=Halo%20Navale%20Mitratama%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20maintenance%20perkapalan."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp"

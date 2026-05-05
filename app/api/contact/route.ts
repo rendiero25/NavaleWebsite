@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
 function escapeHtml(str: string): string {
   return str
@@ -12,11 +12,16 @@ function escapeHtml(str: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const apiKey = process.env.RESEND_API_KEY
-    if (!apiKey) {
+    const gmailUser = process.env.GMAIL_USER
+    const gmailPass = process.env.GMAIL_APP_PASSWORD
+    if (!gmailUser || !gmailPass) {
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
     }
-    const resend = new Resend(apiKey)
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: gmailUser, pass: gmailPass },
+    })
 
     const body = await req.json()
     const { name, company, email, phone, service, message } = body
@@ -34,9 +39,9 @@ export async function POST(req: NextRequest) {
     const waPhone     = String(phone).replace(/[^0-9]/g, '').replace(/^0/, '')
 
     // Notifikasi ke Navale
-    await resend.emails.send({
-      from: 'Website Navale <onboarding@resend.dev>',
-      to: ['cv.navalemitratama@gmail.com'],
+    await transporter.sendMail({
+      from: `"Website Navale" <${gmailUser}>`,
+      to: 'cv.navalemitratama@gmail.com',
       replyTo: email,
       subject: `[Website] Pesan baru dari ${safeName} — ${safeService}`,
       html: `
@@ -92,9 +97,9 @@ export async function POST(req: NextRequest) {
     })
 
     // Auto-reply ke pengirim
-    await resend.emails.send({
-      from: 'CV Navale Mitratama <onboarding@resend.dev>',
-      to: [email],
+    await transporter.sendMail({
+      from: `"CV Navale Mitratama" <${gmailUser}>`,
+      to: email,
       subject: 'Pesan Anda Telah Diterima — CV Navale Mitratama',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 20px;">
@@ -115,9 +120,9 @@ export async function POST(req: NextRequest) {
             <p style="color: #4B5563; line-height: 1.7;">
               Atau Anda bisa langsung menghubungi kami via WhatsApp:
             </p>
-            <a href="https://wa.me/6281219445330"
+            <a href="https://wa.me/6281110109627"
                style="display: inline-block; background: #25D366; color: white; padding: 12px 24px; text-decoration: none; font-weight: 600; margin-bottom: 24px;">
-              Chat WhatsApp — 0812-1944-5330
+              Chat WhatsApp — 0811-1010-9627
             </a>
             <p style="color: #9CA3AF; font-size: 13px; border-top: 1px solid #f0f4f8; padding-top: 20px;">
               Hormat Kami,<br>
