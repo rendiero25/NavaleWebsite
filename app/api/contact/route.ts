@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     // Notifikasi ke Navale
     await transporter.sendMail({
       from: `"Website Navale" <${gmailUser}>`,
-      to: 'cv.navalemitratama@gmail.com',
+      to: 'cv.navalemitratama@gmail.com, navalemtm@gmail.com',
       replyTo: email,
       subject: `[Website] Pesan baru dari ${safeName} — ${safeService}`,
       html: `
